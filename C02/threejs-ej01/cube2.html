@@ -1,45 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>MDN Games: Three.js demo</title>
-	<style>
-		body { margin: 0; padding: 0; font-size: 0; }
-		canvas { width: 100%; height: 100%; }
-	</style>
+    <meta charset="utf-8">
+    <title>MDN Games: Three.js demo</title>
+    <style>
+        body { margin: 0; padding: 0; font-size: 0; }
+        canvas { width: 100%; height: 100%; }
+    </style>
 </head>
 <body>
-	<!--  Se hace el llamnado a la libreria-->
+    <!--  Se hace el llamanado a la libreria-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
- // se crea una variable y se iguala a la funcion scene() de la libreria 	
+ // se crea una variable y se iguala a la funcion scene() de la libreria    
 const scene = new THREE.Scene();
 /*se crea una variable y se iguala a la funcion PerpectiveCamara que tiene como parametros 
-        1.
-        2.
-        3.
+        1.Campo de vision en grados (75)
+        2.Relacion aspecto de la camara  (window.innerWidth / window.innerHeight)
+        3.distancia del plano de corte cercano ( 0.1)
+		4.distancia de corte lejano (1000)
         
     */
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
+/* se crea  la variable renderer y se iguala a la funcion WebGLRenderer() de la libreria threejs
+	este tiene como parametro define el comportamiento del renderizador.
+	-*.setSize* es un metodo que cambia Cambia el tamaño del lienzo de salida a 
+	(ancho, alto) teniendo en cuenta la proporción de píxeles del dispositivo 
+	y también configura la ventana gráfica para que se ajuste a ese tamaño, comenzando en (0, 0).
+	en este caso el parametro dado es (window.innerWidth, window.innerHeight)
+	- por ultimo configura y/o imprime en pantalla 
+*/
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
-
+/*
+ - Crea variable geometry y utuliaaza funcion de la biblioteca.BoxGeometry 
+ la cual hace--BoxGeometry es una clase de geometría para un cuboide 
+ rectangular con un "ancho", "alto" y "profundidad" determinados.
+*/
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+/* 
+ - Un material para dibujar geometrías de forma simple y sombreada (plana o alámbrica).
+ Color del material, por defecto establecido en blanco (0xffffff).
+*/
+const material = new THREE.MeshBasicMaterial( { color: 0xffffff} );
+/*
+ - Malla (geometría: BufferGeometry , material: Material )
+ .geometría : BufferGeometry
+Una instancia de BufferGeometry (o clases derivadas), que define la estructura del objeto.
+ -. material : Material
+Una instancia de material derivada de la clase base Material o una matriz de materiales, 
+que define la apariencia del objeto. El valor predeterminado es MeshBasicMaterial .
+
+*/
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
-
-camera.position.z = 5;
+// hace zoom en la pantalla ( lo hacerca y lo aleja)
+camera.position.z = 1;
 // se crea la funcion animate()
 function animate() {
-	requestAnimationFrame( animate );
+    requestAnimationFrame( animate );// ubicacion
 
-	cube.rotation.x += 0.01;
-	cube.rotation.y += 0.01;
+    cube.rotation.x += 0.05; // parametro en x 
+    cube.rotation.y += 0.05; // parametro en y 
 
-	renderer.render( scene, camera );
+    renderer.render( scene, camera ); // Renderiza la scene
 }
 
 animate(); // llamado a la funcion 
