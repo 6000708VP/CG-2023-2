@@ -1,12 +1,17 @@
 const scene = new THREE.Scene();
 function Ortogonal(){
 	const camera = new THREE.OrthographicCamera(5, -5,5, -5, 3, 10 );
-	scene.add(camera);
+	camera.position.z = 5
+	camera.updateProjectionMatrix();
+	
 }
 function Perspectiva(){
-	const camera1 = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-	scene.add(camera)
+	const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+	camera.position.z = 5
+	camera.updateProjectionMatrix();
 }
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+scene.add(camera);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
@@ -24,12 +29,12 @@ sphere.position.x = -2;
 
 
 function animate() {
-    //requestAnimationFrame( animate )
-    //cube.rotation.x += 0.01; 
-    //cube.rotation.y += 0.01;
+    requestAnimationFrame( animate )
+    cube.rotation.x += 0.01; 
+    cube.rotation.y += 0.01;
 	
-	//sphere.rotation.x += 0.01; 
-    //sphere.rotation.y += 0.01;
+	sphere.rotation.x += 0.01; 
+    sphere.rotation.y += 0.01;
 
     renderer.render( scene, camera ); 
 }
