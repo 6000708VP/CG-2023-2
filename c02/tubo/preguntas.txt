@@ -1,0 +1,11 @@
+SOLUCIÓN PREGUNTAS
+¿Qué pasa si cambia la curva por una línea recta? ¿Cómo se verá el tubo en este caso?
+Si se cambia la curva por una linea recta, se ve un tubo recto, su rotación se ve distinta y al interactuar con la distancia entre los puntos el tubo cambia de tamaño.
+
+¿Qué sucede si ajusta el grosor del tubo o cambia el material utilizado para renderizarlo?
+Entre más grosor el tubo pierde tamaño, si se cambia el material no afecta en nada a la geometría del tubo.
+
+¿Puede añadir iluminación y sombreado para mejorar la visualización del tubo?
+ No se puede ya que para el caso del MeshBasicMaterial no funciona ni la iluminación ni el sombreado ya que este material viene sin ningun tipo de sombreado ni reflejos lo que hace que no necesite iluminación.
+ Un material al cual si se le puede añadir iluminación es el MeshStandardMaterial.
+ 
